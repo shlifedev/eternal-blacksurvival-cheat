@@ -39,7 +39,7 @@ namespace Blis.Client.Cheat
             gui = !gui;
         }
 
-        protected void Log(object content)
+        public void Log(object content)
         {
             GameUI.inst.ChattingUi.AddChatting("치트로그", "에비츄", content.ToString(), false, false, true);
         }

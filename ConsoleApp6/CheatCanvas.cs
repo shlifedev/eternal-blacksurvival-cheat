@@ -36,14 +36,7 @@ namespace Blis.Client.Cheat
                 {
                     if(CheatMain.instance.IsMine(player) == false)
                     {
-                        GameObject textObject = new GameObject();
-                        var ps = textObject.AddComponent<PositionSyncableUI>();
-                            ps.Init(player);
-
-                        var text = textObject.AddComponent<Text>();
-                        text.font = ResourceManager.inst.GetFont(Ln.GetCurrentLanguage().GetFontName());
-                        text.fontSize = 12;
-                        text.text = "테스트";
+                        PositionSyncableUI.PlayerInfo.Create(player);
                     }
                 }
             }
