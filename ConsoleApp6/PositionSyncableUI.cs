@@ -92,7 +92,7 @@ namespace Blis.Client.Cheat
                         CheatMain.instance.Log("parse failed!");
                         return;
                     }
-                    infoText = CreateDefaultText(this.transform, 14);
+                    infoText = CreateDefaultText(this.transform, 16);
                 }
                 catch (Exception e)
                 {
