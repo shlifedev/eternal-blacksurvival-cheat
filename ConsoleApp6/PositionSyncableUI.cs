@@ -17,7 +17,7 @@ namespace Blis.Client.Cheat
         public LocalObject followTarget;
         public Vector3 worldOffset;
         public float tick = 0.0f;
-        public float maxTick = 1.0f;
+        public float maxTick = 0.25f;
         public virtual void Init(LocalObject obj)
         {
             this.followTarget = obj;
@@ -51,7 +51,7 @@ namespace Blis.Client.Cheat
             UpdatePos();
         }
 
-        public Text CreateDefaultText(Transform parent, int fontSize = 14, string content = null)
+        public Text CreateDefaultText(Transform parent, int fontSize = 14, bool strong = false, string content = null)
         {
             GameObject textObject = new GameObject();
             var text = textObject.AddComponent<Text>();
@@ -63,6 +63,12 @@ namespace Blis.Client.Cheat
             text.text = content; 
             textObject.transform.SetParent(parent,false);
             textObject.transform.localPosition = Vector3.zero;
+            if(strong)
+            {
+                var outline =  textObject.AddComponent<Outline>();
+                var shadow =  textObject.AddComponent<Shadow>();
+                text.fontStyle = FontStyle.Bold;
+            }
             return text;
         }
 
@@ -106,15 +112,15 @@ namespace Blis.Client.Cheat
                     var QCoolTime = (this.player.GetSkillCooldown(SkillSlotIndex.Active1).HasValue == false) ?
                     0
                     :
-                    this.player.GetSkillCooldown(SkillSlotIndex.Active1).Value;
+                    this.player.GetSkillCooldown(SkillSlotIndex.Active2).Value;
                     var WCoolTime = (this.player.GetSkillCooldown(SkillSlotIndex.Active2).HasValue == false) ?
                     0
                     :
-                    this.player.GetSkillCooldown(SkillSlotIndex.Active2).Value;
+                    this.player.GetSkillCooldown(SkillSlotIndex.Active3).Value;
                     var ECoolTime = (this.player.GetSkillCooldown(SkillSlotIndex.Active3).HasValue == false) ?
                     0
                     :
-                    this.player.GetSkillCooldown(SkillSlotIndex.Active3).Value;
+                    this.player.GetSkillCooldown(SkillSlotIndex.Active4).Value;
                     var RCoolTime = (this.player.GetSkillCooldown(SkillSlotIndex.Active4).HasValue == false) ?
                     0
                     :
@@ -122,24 +128,24 @@ namespace Blis.Client.Cheat
                     this.player.GetSkillCooldown(SkillSlotIndex.Active4).Value;
                      
                     string infoStr = "";
-                    if (QCoolTime <= 0)
-                        infoStr += "<color=green>Q</color> ";
-                    else if(this.player.GetSkillLevel(SkillSlotIndex.Active1) == 0 || QCoolTime > 0)
+                    if (QCoolTime <= 0 && this.player.GetSkillLevel(SkillSlotIndex.Active1) != 0)
+                        infoStr += "<color=#1FFF00>Q</color> ";
+                    else
                         infoStr += "<color=red>Q</color> ";
 
-                    if (WCoolTime <= 0)
-                        infoStr += "<color=green>W</color> ";
-                    else if (this.player.GetSkillLevel(SkillSlotIndex.Active2) == 0 || QCoolTime > 0)
+                    if (WCoolTime <= 0 && this.player.GetSkillLevel(SkillSlotIndex.Active2) != 0)
+                        infoStr += "<color=#1FFF00>W</color> ";
+                    else
                         infoStr += "<color=red>W</color> ";
 
-                    if (ECoolTime <= 0)
-                        infoStr += "<color=green>E</color> ";
-                    else if (this.player.GetSkillLevel(SkillSlotIndex.Active3) == 0 || QCoolTime > 0)
+                    if (ECoolTime <= 0 && this.player.GetSkillLevel(SkillSlotIndex.Active3) != 0)
+                        infoStr += "<color=#1FFF00>E</color> ";
+                    else
                         infoStr += "<color=red>E</color> ";
 
-                    if (RCoolTime <= 0)
-                        infoStr += "<color=green>R</color> ";
-                    else if (this.player.GetSkillLevel(SkillSlotIndex.Active4) == 0 || QCoolTime > 0)
+                    if (RCoolTime <= 0 && this.player.GetSkillLevel(SkillSlotIndex.Active4) != 0)
+                        infoStr += "<color=#1FFF00>R</color> ";
+                    else 
                         infoStr += "<color=red>R</color> ";
 
 
@@ -159,20 +165,7 @@ namespace Blis.Client.Cheat
                 }
             }
 
-            public void OnGUI()
-            {
-                if (this.player != null)
-                {
-                    if (this.player == CheatMain.instance.mine)
-                    {
-                        GUILayout.Label(this.player.GetType().Name);
-                        GUILayout.Label(this.transform.position.ToString());
-                        GUILayout.Label((this.infoText != null).ToString());
-                        GUILayout.Label(this.player.GetType().Name);
-
-                    }
-                }
-            }
+        
             public override void Update()
             {
                 base.Update();
