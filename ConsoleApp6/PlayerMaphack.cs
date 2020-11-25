@@ -49,12 +49,12 @@ namespace Blis.Client.Cheat
                     }
                     else
                     {
-                        foreach (var v in alivePlayers)
+                        foreach (var v in alivePlayers) 
                         {
                             if(Distance(v) < 30)
                             {
                                 v.OnSight();
-                                yield return new WaitForSeconds(0.5f);
+                                yield return new WaitForSeconds(0.25f);
                             } 
                         }
                     }

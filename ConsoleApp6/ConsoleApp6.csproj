@@ -36,7 +36,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="LocalPlayerCharacterCheatBehaviour.cs" />
+    <Compile Include="CheatSingleton.cs" />
+    <Compile Include="CheatMain.cs" />
+    <Compile Include="MonsterMaphack.cs" />
+    <Compile Include="PlayerMaphack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
