@@ -14,8 +14,7 @@ namespace Blis.Client.Cheat
 {
     public class CheatCanvas : CheatSingleton<CheatCanvas>
     {
-        public Canvas canvas;
-
+        public Canvas canvas; 
         public void InitDelay()
         {
             GameObject canvasObject = new GameObject();

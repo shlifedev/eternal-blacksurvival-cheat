@@ -1,10 +1,4 @@
-C:\Users\shlif\source\repos\ConsoleApp6\ConsoleApp6\obj\Debug\ConsoleApp6.csprojAssemblyReference.cache
-C:\Users\shlif\source\repos\ConsoleApp6\ConsoleApp6\obj\Debug\ConsoleApp6.csproj.CoreCompileInputs.cache
-C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\obj\Debug\ConsoleApp6.csprojAssemblyReference.cache
-C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\obj\Debug\ConsoleApp6.csproj.CoreCompileInputs.cache
-C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\ConsoleApp6.dll.config
-C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\ConsoleApp6.dll
-C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\ConsoleApp6.pdb
+C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\0Harmony.dll
 C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\Assembly-CSharp-firstpass.dll
 C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\Assembly-CSharp.dll
 C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\BlisUtils.dll
@@ -121,7 +115,11 @@ C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\b
 C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\StackExchange.Redis.dll
 C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\Nest.dll
 C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\Newtonsoft.Json.dll
-C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\obj\Debug\ConsoleApp6.csproj.CopyComplete
-C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\obj\Debug\ConsoleApp6.dll
-C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\obj\Debug\ConsoleApp6.pdb
-C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\0Harmony.dll
+C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\obj\Debug\BlackSurvivalCheat.csproj.CoreCompileInputs.cache
+C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\obj\Debug\BlackSurvivalCheat.csproj.CopyComplete
+C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\BlackSurvivalCheat.dll.config
+C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\BlackSurvivalCheat.dll
+C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\BlackSurvivalCheat.pdb
+C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\obj\Debug\BlackSurvivalCheat.dll
+C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\obj\Debug\BlackSurvivalCheat.pdb
+C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\obj\Debug\BlackSurvivalCheat.csprojAssemblyReference.cache
