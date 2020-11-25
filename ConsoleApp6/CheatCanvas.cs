@@ -15,31 +15,31 @@ namespace Blis.Client.Cheat
     public class CheatCanvas : CheatSingleton<CheatCanvas>
     {
         public Canvas canvas;
-        public void Awake()
+
+        public void InitDelay()
         {
             GameObject canvasObject = new GameObject();
             this.canvas = canvasObject.AddComponent<Canvas>();
-            var scaler = canvasObject.AddComponent<CanvasScaler>(); 
+            var scaler = canvasObject.AddComponent<CanvasScaler>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1920,1080); 
+            scaler.referenceResolution = new Vector2(1920, 1080);
             Log("Create Canvas Instance");
+            InitPlayerSkillCooltime();
         }
-         
-
-        public void Update()
+        public void Awake()
         {
-            if(Input.GetKeyUp(KeyCode.Home))
-            {
-                Log("Create Texts");
-                foreach(var player in CheatMain.instance.players)
-                {
-                    if(CheatMain.instance.IsMine(player) == false)
-                    {
-                        PositionSyncableUI.PlayerInfo.Create(player);
-                    }
-                }
-            }
+            Invoke("InitDelay", 2.0f);
+
+        }
+
+
+        public void InitPlayerSkillCooltime()
+        {
+            Log("Init Skill Cooltime Viewer");
+            var data = new GameObject();
+            var x = data.AddComponent<PositionSyncableUI.PlayerInfo>();
+            x.Init(CheatMain.instance.mine);
         }
     }
 }
