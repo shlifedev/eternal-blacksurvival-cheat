@@ -70,8 +70,7 @@ namespace Blis.Client.Cheat
                 text.fontStyle = FontStyle.Bold;
             }
             return text;
-        }
-
+        } 
         public class PlayerInfo : PositionSyncableUI
         {
             public LocalPlayerCharacter player ;
