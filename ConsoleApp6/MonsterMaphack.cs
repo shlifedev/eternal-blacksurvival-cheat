@@ -12,7 +12,7 @@ using UnityEngine.UI;
 
 namespace Blis.Client.Cheat
 {
-    public class MonsterMaphack : CheatSingleton<PlayerMaphack>
+    public class MonsterMaphack : CheatSingleton<MonsterMaphack>
     {
         public List<Renderer> monsterRenderers = new List<Renderer>();
         public Coroutine maphackRoutine;
@@ -21,10 +21,7 @@ namespace Blis.Client.Cheat
         {
             maphackRoutine = StartCoroutine(CoMaphackRoutine());
             meshRenderRoutine = StartCoroutine(CoMeshRenderer());
-            Log("MonsterrMaphack Initalized!");
-
-
-            CheatMain.instance.RegMonsterCountUpdateEvent(OnMonsterCountChanged);
+            Log("MonsterMaphack Initalized!"); 
         }
 
         private float Distance(LocalPlayerCharacter target)
@@ -45,8 +42,7 @@ namespace Blis.Client.Cheat
                 monsterRenderers.AddRange(target.gameObject.GetComponents<Renderer>());
                 monsterRenderers.AddRange(target.gameObject.GetComponentsInParent<Renderer>());
                 monsterRenderers.AddRange(target.gameObject.GetComponentsInChildren<Renderer>());
-            }
-            Log("몬스터 숫자가 변경되어 렌더데이터가 변경되었습니다. => " + monsterRenderers.Count);
+            } 
         }
          
 
