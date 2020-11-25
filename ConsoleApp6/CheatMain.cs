@@ -59,6 +59,7 @@ namespace Blis.Client.Cheat
             {
                 StartCoroutine(CoGameDataUpdator());
                 StartCoroutine(CoUpdateMonsterObjects());
+ 
             }
         }
 
@@ -95,7 +96,7 @@ namespace Blis.Client.Cheat
                     //스타트 치트
                     PlayerMaphack.instance.CreateInstance();
                     MonsterMaphack.instance.CreateInstance();
-
+                    CheatCanvas.instance.CreateInstance();
                     init = true; 
                 }
                 else
