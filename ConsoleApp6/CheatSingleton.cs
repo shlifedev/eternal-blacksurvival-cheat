@@ -14,7 +14,7 @@ namespace Blis.Client.Cheat
         public static T instance
         {
             get
-            {
+            { 
                 if (singleTon == null)
                 {
                     var obj = new GameObject();
