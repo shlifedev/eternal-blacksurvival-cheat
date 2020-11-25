@@ -18,9 +18,7 @@ namespace Blis.Client.Cheat
         public LocalPlayerCharacter mine;
         public List<LocalPlayerCharacter> players = new List<LocalPlayerCharacter>();
         public List<LocalMonster> monsters = new List<LocalMonster>();
-        public LocalWorld world;
-
-        System.Action onUpdateMonsterCount;
+        public LocalWorld world; 
         public void Awake()
         {
         }
@@ -37,11 +35,7 @@ namespace Blis.Client.Cheat
 
         }
 
-
-        public void RegMonsterCountUpdateEvent(System.Action callback)
-        {
-            this.onUpdateMonsterCount += callback;
-        }
+ 
 
         public IEnumerator CoUpdateMonsterObjects()
         {
@@ -49,19 +43,11 @@ namespace Blis.Client.Cheat
                 yield return null;
 
             while (true)
-            {
-                
-                var findMonsters = FindObjectsOfType<LocalMonster>();
-                
-                int oldCount = monsters.Count;
-                monsters.Clear();
-                monsters.AddRange(findMonsters);
-                if (oldCount != findMonsters.Length)
-                {
-                    onUpdateMonsterCount?.Invoke(); 
-                    Log("몬스터 데이터가 업데이트 되었습니다.");
-                }
-
+            { 
+                var findMonsters = FindObjectsOfType<LocalMonster>(); 
+                this.monsters.Clear();
+                this.monsters.AddRange(findMonsters);
+                MonsterMaphack.instance.OnMonsterCountChanged();
                 yield return new WaitForSeconds(1);
             }
         }
