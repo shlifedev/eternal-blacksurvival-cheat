@@ -22,13 +22,47 @@ namespace Blis.Client.Cheat
             Log("PlayerMaphack Initalized!");
             maphackRoutine = StartCoroutine(CoMaphackRoutine());
             meshRenderRoutine = StartCoroutine(CoMeshRenderer());
+            StartCoroutine(UpdateSight());
         }
 
         private float Distance(LocalPlayerCharacter target)
         {
             return Vector3.Distance(CheatMain.instance.mine.GetPosition(), target.GetPosition());
         }
+        public IEnumerator UpdateSight()
+        {
+            while (CheatMain.instance.IsInit() == false)
+                yield return null;
 
+            while(true)
+            {
+                if(enable)
+                {
+                    var alivePlayers = CheatMain.instance.players.FindAll(x=>x.IsAlive && x != CheatMain.instance.mine);
+                    if(alivePlayers.Count <= 6) //maybe 1.5f delay.
+                    {
+                        foreach(var v in alivePlayers)
+                        {
+                            v.OnSight();
+                            yield return new WaitForSeconds(0.25f);
+                        } 
+                    }
+                    else
+                    {
+                        foreach (var v in alivePlayers)
+                        {
+                            if(Distance(v) < 30)
+                            {
+                                v.OnSight();
+                                yield return new WaitForSeconds(0.5f);
+                            } 
+                        }
+                    }
+                }
+
+                yield return new WaitForSeconds(1.0f);
+            }
+        }
         public IEnumerator CoMeshRenderer()
         {
             //wait until..

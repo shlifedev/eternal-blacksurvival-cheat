@@ -8,8 +8,7 @@ using Blis.Client.UI;
 using Blis.Common;
 using Blis.Common.Utils;
 using UnityEngine;
-using UnityEngine.UI;
-
+using UnityEngine.UI; 
 
 namespace Blis.Client.Cheat
 {
@@ -18,6 +17,8 @@ namespace Blis.Client.Cheat
         public LocalPlayerCharacter mine;
         public List<LocalPlayerCharacter> players = new List<LocalPlayerCharacter>();
         public List<LocalMonster> monsters = new List<LocalMonster>();
+
+        
         public LocalWorld world; 
         public void Awake()
         {
@@ -59,6 +60,11 @@ namespace Blis.Client.Cheat
                 StartCoroutine(CoGameDataUpdator());
                 StartCoroutine(CoUpdateMonsterObjects());
             }
+        }
+
+        public void OnGUI()
+        {
+
         }
         public IEnumerator CoGameDataUpdator()
         {

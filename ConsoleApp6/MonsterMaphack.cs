@@ -50,12 +50,9 @@ namespace Blis.Client.Cheat
         {
             //wait until..
             while (CheatMain.instance.IsInit() == false)
-                yield return null;
-
-
+                yield return null; 
             Log("CoMeshRenderer Initalized!");
-            /* Initalize */
-           
+            /* Initalize */ 
             while (true)
             {
                 if (enable)
@@ -66,8 +63,7 @@ namespace Blis.Client.Cheat
                     }
                 }
                 yield return new WaitForSeconds(0.2f);
-            }
-
+            } 
         }
         public IEnumerator CoMaphackRoutine()
         {
