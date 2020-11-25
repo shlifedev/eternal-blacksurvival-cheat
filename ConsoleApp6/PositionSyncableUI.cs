@@ -112,38 +112,37 @@ namespace Blis.Client.Cheat
                     var QCoolTime = (this.player.GetSkillCooldown(SkillSlotIndex.Active1).HasValue == false) ?
                     0
                     :
-                    this.player.GetSkillCooldown(SkillSlotIndex.Active2).Value;
+                    this.player.GetSkillCooldown(SkillSlotIndex.Active1).Value;
                     var WCoolTime = (this.player.GetSkillCooldown(SkillSlotIndex.Active2).HasValue == false) ?
                     0
                     :
-                    this.player.GetSkillCooldown(SkillSlotIndex.Active3).Value;
+                    this.player.GetSkillCooldown(SkillSlotIndex.Active2).Value;
                     var ECoolTime = (this.player.GetSkillCooldown(SkillSlotIndex.Active3).HasValue == false) ?
                     0
                     :
-                    this.player.GetSkillCooldown(SkillSlotIndex.Active4).Value;
+                    this.player.GetSkillCooldown(SkillSlotIndex.Active3).Value;
                     var RCoolTime = (this.player.GetSkillCooldown(SkillSlotIndex.Active4).HasValue == false) ?
                     0
-                    :
-                    
+                    : 
                     this.player.GetSkillCooldown(SkillSlotIndex.Active4).Value;
                      
                     string infoStr = "";
-                    if (QCoolTime <= 0 && this.player.GetSkillLevel(SkillSlotIndex.Active1) != 0)
+                    if (QCoolTime == 0 && this.player.GetSkillLevel(SkillSlotIndex.Active1) != 0)
                         infoStr += "<color=#1FFF00>Q</color> ";
                     else
                         infoStr += "<color=red>Q</color> ";
 
-                    if (WCoolTime <= 0 && this.player.GetSkillLevel(SkillSlotIndex.Active2) != 0)
+                    if (WCoolTime == 0 && this.player.GetSkillLevel(SkillSlotIndex.Active2) != 0)
                         infoStr += "<color=#1FFF00>W</color> ";
                     else
                         infoStr += "<color=red>W</color> ";
 
-                    if (ECoolTime <= 0 && this.player.GetSkillLevel(SkillSlotIndex.Active3) != 0)
+                    if (ECoolTime == 0 && this.player.GetSkillLevel(SkillSlotIndex.Active3) != 0)
                         infoStr += "<color=#1FFF00>E</color> ";
                     else
                         infoStr += "<color=red>E</color> ";
 
-                    if (RCoolTime <= 0 && this.player.GetSkillLevel(SkillSlotIndex.Active4) != 0)
+                    if (RCoolTime == 0 && this.player.GetSkillLevel(SkillSlotIndex.Active4) != 0)
                         infoStr += "<color=#1FFF00>R</color> ";
                     else 
                         infoStr += "<color=red>R</color> ";
@@ -166,6 +165,38 @@ namespace Blis.Client.Cheat
             }
 
         
+
+            public void OnGUI()
+            {
+                var QCoolTime = (this.player.GetSkillCooldown(SkillSlotIndex.Active1).HasValue == false) ?
+                    0
+                    :
+                    this.player.GetSkillCooldown(SkillSlotIndex.Active1).Value;
+                var WCoolTime = (this.player.GetSkillCooldown(SkillSlotIndex.Active2).HasValue == false) ?
+                    0
+                    :
+                    this.player.GetSkillCooldown(SkillSlotIndex.Active2).Value;
+                var ECoolTime = (this.player.GetSkillCooldown(SkillSlotIndex.Active3).HasValue == false) ?
+                    0
+                    :
+                    this.player.GetSkillCooldown(SkillSlotIndex.Active3).Value;
+                var RCoolTime = (this.player.GetSkillCooldown(SkillSlotIndex.Active4).HasValue == false) ?
+                    0
+                    :
+                    this.player.GetSkillCooldown(SkillSlotIndex.Active4).Value;
+
+                var NormalAttackTime = (this.player.GetSkillCooldown(SkillSlotIndex.Attack).HasValue == false) ?
+                    0
+                    :
+                    this.player.GetSkillCooldown(SkillSlotIndex.Attack).Value;
+
+                GUILayout.Label(QCoolTime.ToString());
+                GUILayout.Label(WCoolTime.ToString());
+                GUILayout.Label(ECoolTime.ToString());
+                GUILayout.Label(RCoolTime.ToString());
+                GUILayout.Label(NormalAttackTime.ToString());
+
+            }
             public override void Update()
             {
                 base.Update();
