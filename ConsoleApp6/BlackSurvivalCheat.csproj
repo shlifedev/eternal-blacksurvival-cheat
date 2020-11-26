@@ -58,6 +58,7 @@
     <Compile Include="CheatSingleton.cs" />
     <Compile Include="CheatMain.cs" />
     <Compile Include="CheatCanvas.cs" />
+    <Compile Include="GameDataDumper.cs" />
     <Compile Include="MonsterMaphack.cs" />
     <Compile Include="PlayerMaphack.cs" />
     <Compile Include="PositionSyncableUI.cs" />

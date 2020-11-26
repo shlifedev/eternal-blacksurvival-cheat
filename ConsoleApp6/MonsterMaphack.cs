@@ -21,7 +21,7 @@ namespace Blis.Client.Cheat
         {
             maphackRoutine = StartCoroutine(CoMaphackRoutine());
             meshRenderRoutine = StartCoroutine(CoMeshRenderer());
-            Log("MonsterMaphack Initalized!"); 
+          
         }
 
         private float Distance(LocalPlayerCharacter target)
@@ -34,8 +34,7 @@ namespace Blis.Client.Cheat
         /// 몬스터 숫자 변경시 렌더러 업데이트
         /// </summary>
         public void OnMonsterCountChanged()
-        {
-          
+        { 
             monsterRenderers.Clear();
             foreach (var target in CheatMain.instance.monsters)
             { 
@@ -45,6 +44,21 @@ namespace Blis.Client.Cheat
             } 
         }
          
+        public void BearNotify()
+        {
+            
+                if (enable)
+                {
+                    foreach (var monster in CheatMain.instance.monsters)
+                    {
+                        if (monster.MonsterType == MonsterType.Bear && monster.IsAlive)
+                        {
+                            GameObject minimapObj = MonoBehaviourInstance<GameUI>.inst.Minimap.UIMap.AddPing(PingType.Warning, monster.GetPosition());
+                            GameObject mapwindowObj = MonoBehaviourInstance<GameUI>.inst.MapWindow.UIMap.AddPing(PingType.Warning,  monster.GetPosition());
+                        }
+                    }
+                } 
+        }
 
         public IEnumerator CoMeshRenderer()
         {
@@ -89,6 +103,14 @@ namespace Blis.Client.Cheat
             }
         }
 
+
+        void Update()
+        {
+            if(Input.GetKeyUp(KeyCode.CapsLock))
+            {
+                BearNotify();
+            }
+        }
         void OnGUI()
         {
             if (gui)

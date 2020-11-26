@@ -8,7 +8,7 @@ using Blis.Client.UI;
 using Blis.Common;
 using Blis.Common.Utils;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
 namespace Blis.Client.Cheat
 {
@@ -18,8 +18,8 @@ namespace Blis.Client.Cheat
         public List<LocalPlayerCharacter> players = new List<LocalPlayerCharacter>();
         public List<LocalMonster> monsters = new List<LocalMonster>();
 
-        
-        public LocalWorld world; 
+
+        public LocalWorld world;
         public void Awake()
         {
         }
@@ -35,7 +35,6 @@ namespace Blis.Client.Cheat
             return mine == target;
 
         }
-
  
 
         public IEnumerator CoUpdateMonsterObjects()
@@ -44,8 +43,8 @@ namespace Blis.Client.Cheat
                 yield return null;
 
             while (true)
-            { 
-                var findMonsters = FindObjectsOfType<LocalMonster>(); 
+            {
+                var findMonsters = FindObjectsOfType<LocalMonster>();
                 this.monsters.Clear();
                 this.monsters.AddRange(findMonsters);
                 MonsterMaphack.instance.OnMonsterCountChanged();
@@ -57,9 +56,11 @@ namespace Blis.Client.Cheat
         {
             if (Input.GetKeyUp(KeyCode.Insert))
             {
+                Log("Cheat Startup! ReadGameMemory");
+                Log("Wait For initalize....");
+                Log("develop by.에비츄(shlifedev)");
                 StartCoroutine(CoGameDataUpdator());
-                StartCoroutine(CoUpdateMonsterObjects());
- 
+                StartCoroutine(CoUpdateMonsterObjects()); 
             }
         }
 
@@ -97,10 +98,10 @@ namespace Blis.Client.Cheat
                     PlayerMaphack.instance.CreateInstance();
                     MonsterMaphack.instance.CreateInstance();
                     CheatCanvas.instance.CreateInstance();
-                    init = true; 
+                    init = true;
                 }
                 else
-                { 
+                {
                 }
                 yield return null;
             }
