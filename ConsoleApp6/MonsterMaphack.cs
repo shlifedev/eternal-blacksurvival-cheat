@@ -104,12 +104,24 @@ namespace Blis.Client.Cheat
         }
 
 
+        void DrawCube()
+        {
+            if (enable == false) return;
+            foreach (var monster in CheatMain.instance.monsters)
+            {
+                if (monster.IsAlive)
+                {
+                    Popcron.Gizmos.Cube(monster.GetPosition(), monster.GetRotation(), monster.gameObject.transform.localScale, Color.yellow);
+                }
+            }
+        }
         void Update()
         {
             if(Input.GetKeyUp(KeyCode.CapsLock))
             {
                 BearNotify();
             }
+            DrawCube();
         }
         void OnGUI()
         {

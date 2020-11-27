@@ -20,15 +20,19 @@ namespace Blis.Client.Cheat
                     var obj = new GameObject();
                     var component = obj.AddComponent<T>();
                     singleTon = component;
-                    return singleTon;
-
+                    return singleTon; 
                 }
                 return singleTon;
             }
         }
         private static T singleTon;
  
-        public void CreateInstance() { }
+        public void CreateInstance(bool dontDestroy = false) {
+            if(dontDestroy)
+            {
+                DontDestroyOnLoad(this.gameObject);
+            }
+        }
         public void Toggle()
         {
             enable = !enable;

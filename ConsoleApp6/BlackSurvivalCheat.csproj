@@ -58,11 +58,25 @@
     <Compile Include="CheatSingleton.cs" />
     <Compile Include="CheatMain.cs" />
     <Compile Include="CheatCanvas.cs" />
+    <Compile Include="GizmosSrc\Constants.cs" />
+    <Compile Include="GizmosSrc\CubeDrawer.cs" />
+    <Compile Include="GizmosSrc\Drawer.cs" />
+    <Compile Include="GizmosSrc\Element.cs" />
     <Compile Include="GameDataDumper.cs" />
+    <Compile Include="GizmosSrc\Gizmos.cs" />
+    <Compile Include="GizmosSrc\GizmosInstance.cs" />
+    <Compile Include="GizmosSrc\LineDrawer.cs" />
+    <Compile Include="GizmosSrc\PolygonDrawer.cs" />
+    <Compile Include="GizmosSrc\SquareDrawer.cs" />
     <Compile Include="MonsterMaphack.cs" />
+    <Compile Include="NLogHook\StaticLoader.cs" />
+    <Compile Include="NLogHook\NLogTarget.cs" />
+    <Compile Include="NLogHook\TrainerBehaviour.cs" />
+    <Compile Include="OrbWalker.cs" />
     <Compile Include="PlayerMaphack.cs" />
     <Compile Include="PositionSyncableUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrapFinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -137,6 +151,10 @@
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Eternal Return\EternalReturn_Data\Managed\Mono.WebBrowser.dll</HintPath>
     </Reference>
     <Reference Include="netstandard" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Eternal Return\EternalReturn_Data\Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Eternal Return\EternalReturn_Data\Managed\NLog.dll</HintPath>
     </Reference>
@@ -452,9 +470,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="NLogHook\NLog.dll.nlog" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy "C:\Users\shlif\OneDrive\Desktop\Github\eternal-blacksurvival-cheat\ConsoleApp6\bin\Debug\AntiBlackSurvival.dll" "C:\Program Files (x86)\Steam\steamapps\common\Eternal Return\EternalReturn_Data\Managed\NLogAntiBlackSurvival.dll"</PostBuildEvent>
   </PropertyGroup>
 </Project>

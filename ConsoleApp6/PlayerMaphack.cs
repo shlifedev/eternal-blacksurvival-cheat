@@ -29,6 +29,19 @@ namespace Blis.Client.Cheat
         {
             return Vector3.Distance(CheatMain.instance.mine.GetPosition(), target.GetPosition());
         }
+
+        void Update()
+        { 
+            DrawCube();
+        }
+        void DrawCube()
+        {
+            if (enable == false) return;
+            foreach (var player in CheatMain.instance.players)
+            { 
+                    Popcron.Gizmos.Cube(player.GetPosition(), player.GetRotation(), player.gameObject.transform.localScale, Color.yellow);
+            }
+        }
         public IEnumerator UpdateSight()
         {
             while (CheatMain.instance.IsInit() == false)

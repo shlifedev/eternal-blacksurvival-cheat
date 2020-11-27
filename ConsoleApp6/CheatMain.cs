@@ -60,8 +60,8 @@ namespace Blis.Client.Cheat
                 Log("Wait For initalize....");
                 Log("develop by.에비츄(shlifedev)");
                 StartCoroutine(CoGameDataUpdator());
-                StartCoroutine(CoUpdateMonsterObjects()); 
-            }
+                StartCoroutine(CoUpdateMonsterObjects());
+            } 
         }
 
         public void OnGUI()
@@ -98,6 +98,8 @@ namespace Blis.Client.Cheat
                     PlayerMaphack.instance.CreateInstance();
                     MonsterMaphack.instance.CreateInstance();
                     CheatCanvas.instance.CreateInstance();
+                    OrbWalker.instance.CreateInstance();
+                    TrapFinder.instance.CreateInstance();
                     init = true;
                 }
                 else
