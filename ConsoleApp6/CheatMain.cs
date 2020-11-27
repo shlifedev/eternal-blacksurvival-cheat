@@ -73,7 +73,7 @@ namespace Blis.Client.Cheat
             while (true)
             {
                 if (init == false)
-                {
+                {  
                     //내 플레이어 id 찾기
                     var me = PlayerController.inst.myObjectId;
 
