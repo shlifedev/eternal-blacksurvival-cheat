@@ -9,7 +9,7 @@ namespace Blis.Client.Cheat
 {
     public class CheatSingleton<T> : MonoBehaviour where T : CheatSingleton<T>
     {
-        public bool gui;
+        public static bool gui;
         public bool enable = true;
         public static T instance
         {

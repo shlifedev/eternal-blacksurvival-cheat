@@ -15,6 +15,6 @@ public class StaticLoader
 	[RuntimeInitializeOnLoadMethod]
 	public static void StaticLoad()
 	{
-		TrainerBehaviour.instance.CreateInstance(true);
+		CheatBehaviour.instance.CreateInstance(true);
 	}
 }

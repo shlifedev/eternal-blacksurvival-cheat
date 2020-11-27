@@ -71,7 +71,7 @@
     <Compile Include="MonsterMaphack.cs" />
     <Compile Include="NLogHook\StaticLoader.cs" />
     <Compile Include="NLogHook\NLogTarget.cs" />
-    <Compile Include="NLogHook\TrainerBehaviour.cs" />
+    <Compile Include="NLogHook\CheatBehaviour.cs" />
     <Compile Include="OrbWalker.cs" />
     <Compile Include="PlayerMaphack.cs" />
     <Compile Include="PositionSyncableUI.cs" />

@@ -25,8 +25,7 @@ namespace Blis.Client.Cheat
                     traps.Clear();
                     traps.AddRange(FindObjectsOfType<LocalSummonTrap>()); 
                 }
-                yield return new WaitForSeconds(1);
-                Log("Trap Count : " + traps.Count);
+                yield return new WaitForSeconds(1); 
             }
         }
 

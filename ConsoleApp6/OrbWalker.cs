@@ -52,7 +52,7 @@ namespace Blis.Client.Cheat
         /// 프레임 현재 틱
         /// </summary>
         public int frameTick= 0;
-        
+        public bool alreadyMoveTo = false;
         /// <summary>
         /// 시간 보정값
         /// </summary>
@@ -123,19 +123,51 @@ namespace Blis.Client.Cheat
                 OrbWalk();
             }
         }
+    
+
+        private bool UseSkill()
+        {
+            var b = PlayerController.inst.PlayerSkill.IsPlaying(SkillSlotIndex.Active1);
+            var f = PlayerController.inst.PlayerSkill.IsPlaying(SkillSlotIndex.Active2);
+            var d = PlayerController.inst.PlayerSkill.IsPlaying(SkillSlotIndex.Active3);
+            var e = PlayerController.inst.PlayerSkill.IsPlaying(SkillSlotIndex.Active4); 
+            if (b || f || d || e) 
+                return true;
+          
+            return false;
+        }
         public void OrbWalk()
         {
+          
+            if(alreadyMoveTo)
+            {
+                frameTick++;
+                if(frameTickMax == frameTick)
+                {
+                    alreadyMoveTo = false;
+                    frameTick = 0;
+                }
+            }
             var mine = CheatMain.instance.mine;
             if (Input.GetKey(KeyCode.Space))
             {
                 //공격 애니메이션 여부 체크
                 var isAttack = PlayerController.inst.PlayerSkill.IsPlaying(SkillSlotIndex.Attack);
-                //공격 애니메이션 시작으로부터 투사체 발사 소요 시간
+                var isUseSkill = UseSkill();
+               
                 float projectileLaunchWait =0;
 
                 var weaponType = mine.GetEquipWeaponMasteryType();
                 projectileLaunchWait = GetProjectileWait((ECharacterCode)mine.CharacterCode);
 
+
+                if(isUseSkill)
+                {
+                    PlayerController.Instance.OnMousePressed(GameInputEvent.Move, GameInput.inst.GetMousePosition());
+                    attackTick = 0;
+                    attackSwitch = false;
+                    return;
+                }
                 //어택 스위치가 꺼져있는경우
                 //어택 스위치는 공격애니메이션 시작시 켜짐.
                 if (attackSwitch == false)
@@ -143,11 +175,10 @@ namespace Blis.Client.Cheat
                     //이동시도
                     if (!isAttack)
                     {
-                        frameTick++;
-                        if (frameTick == frameTickMax)
+                        if (alreadyMoveTo == false)
                         {
-                            PlayerController.Instance.OnMousePressed(GameInputEvent.MoveToAttack, new Vector3(-GameInput.inst.GetMousePosition().x, GameInput.inst.GetMousePosition().y, -GameInput.inst.GetMousePosition().z));
-                            frameTick = 0;
+                            PlayerController.Instance.OnMousePressed(GameInputEvent.MoveToAttack, GameInput.inst.GetMousePosition());
+                            alreadyMoveTo = true;
                         }
                     }
                     else
@@ -156,16 +187,19 @@ namespace Blis.Client.Cheat
                 else if (attackSwitch)
                 {
                     //float maxWaitTick = ClientService.inst.MyPlayer.Character.Stat.AttackDelay;
-                    float maxWaitTick = ClientService.inst.MyPlayer.Character.Stat.AttackDelay - projectileLaunchWait;
+                    // - projectileLaunchWait;
+
+                    float moveCancleableTime = projectileLaunchWait * ClientService.inst.MyPlayer.Character.Stat.AttackDelay; 
+                    float maxWaitTick = ClientService.inst.MyPlayer.Character.Stat.AttackDelay - moveCancleableTime;
+                  
                     //투사체 발사 대기시간 끝나면 플레이어 이동처리
 
-                    if (attackTick > projectileLaunchWait && attackTick < maxWaitTick)
+                    if (attackTick > moveCancleableTime && attackTick < maxWaitTick)
                     {
-                        frameTick++;
-                        if (frameTick == frameTickMax)
+                        if (alreadyMoveTo == false)
                         {
                             PlayerController.Instance.OnMousePressed(GameInputEvent.Move, GameInput.inst.GetMousePosition());
-                            frameTick = 0;
+                            alreadyMoveTo = true;
                         }
                     }
                     else if (attackTick > maxWaitTick)
@@ -177,6 +211,8 @@ namespace Blis.Client.Cheat
                     }
                     attackTick += Time.deltaTime;
                 }
+
+       
             } 
             if (Input.GetKeyUp(KeyCode.Space))
             {

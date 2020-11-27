@@ -8,8 +8,7 @@ using System.Diagnostics;
 namespace Blis.Client.Cheat.NLogHook
 {
     public class CheatBehaviour : Blis.Client.Cheat.CheatSingleton<CheatBehaviour>
-    { 
-        public static bool GUI = false;
+    {   
         void Awake()
         {
             DontDestroyOnLoad(this.gameObject);
@@ -25,8 +24,8 @@ namespace Blis.Client.Cheat.NLogHook
                 }
             }
             if (Input.GetKeyUp(KeyCode.Home))
-            { 
-                
+            {
+                gui = true; 
             }
         }
     }

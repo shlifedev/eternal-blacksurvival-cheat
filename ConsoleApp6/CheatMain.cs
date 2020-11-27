@@ -15,10 +15,7 @@ namespace Blis.Client.Cheat
     public class CheatMain : CheatSingleton<CheatMain>
     {
         public LocalPlayerCharacter mine;
-        public List<LocalPlayerCharacter> players = new List<LocalPlayerCharacter>();
-        public List<LocalMonster> monsters = new List<LocalMonster>();
-
-
+        public List<LocalPlayerCharacter> players = new List<LocalPlayerCharacter>(); 
         public LocalWorld world;
         public void Awake()
         {
@@ -37,20 +34,7 @@ namespace Blis.Client.Cheat
         }
  
 
-        public IEnumerator CoUpdateMonsterObjects()
-        {
-            while (init == false)
-                yield return null;
-
-            while (true)
-            {
-                var findMonsters = FindObjectsOfType<LocalMonster>();
-                this.monsters.Clear();
-                this.monsters.AddRange(findMonsters);
-                MonsterMaphack.instance.OnMonsterCountChanged();
-                yield return new WaitForSeconds(1);
-            }
-        }
+ 
 
         public void Update()
         {
@@ -60,14 +44,9 @@ namespace Blis.Client.Cheat
                 Log("Wait For initalize....");
                 Log("develop by.에비츄(shlifedev)");
                 StartCoroutine(CoGameDataUpdator());
-                StartCoroutine(CoUpdateMonsterObjects());
             } 
         }
-
-        public void OnGUI()
-        {
-
-        }
+         
         public IEnumerator CoGameDataUpdator()
         {
             while (true)
