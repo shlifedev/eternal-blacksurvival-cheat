@@ -120,8 +120,9 @@ namespace Blis.Client.Cheat
         {
             if (enable)
             {
-                OrbWalk();
+                OrbWalk();  
             }
+            
         }
     
 

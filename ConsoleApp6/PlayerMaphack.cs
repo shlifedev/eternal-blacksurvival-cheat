@@ -31,7 +31,18 @@ namespace Blis.Client.Cheat
         }
 
         void Update()
-        { 
+        {
+            if (Input.GetKeyUp(KeyCode.CapsLock))
+            {
+                foreach(var v in CheatMain.instance.players)
+                {
+                    if(v.IsAlive)
+                    {
+                        v.OnSight(); 
+                    }
+                }
+            }
+
             DrawCube();
         }
         void DrawCube()

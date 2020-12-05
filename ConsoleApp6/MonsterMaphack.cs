@@ -26,10 +26,12 @@ namespace Blis.Client.Cheat
         }
         public IEnumerator CoUpdateMonsterObjects()
         {
-            var findMonsters = FindObjectsOfType<LocalMonster>();
+            var findMonsters = FindObjectsOfType<LocalMonster>(); 
             this.monsters.Clear();
+            yield return new WaitForEndOfFrame();
             this.monsters.AddRange(findMonsters);
-            OnMonsterCountChanged();
+            yield return new WaitForEndOfFrame();
+            OnMonsterCountChanged(); 
             yield return new WaitForSeconds(1);
         }
         private float Distance(LocalPlayerCharacter target)
@@ -51,7 +53,25 @@ namespace Blis.Client.Cheat
                 monsterRenderers.AddRange(target.gameObject.GetComponentsInChildren<Renderer>());
             } 
         }
-         
+        public void WolfNotify()
+        {
+
+            if (enable)
+            {
+                foreach (var monster in monsters)
+                {
+                    if (monster.MonsterType == MonsterType.Wolf && monster.IsAlive)
+                    {
+                        GameObject minimapObj = MonoBehaviourInstance<GameUI>.inst.Minimap.UIMap.AddPing(PingType.Help, monster.GetPosition());
+                        GameObject mapwindowObj = MonoBehaviourInstance<GameUI>.inst.MapWindow.UIMap.AddPing(PingType.Help,  monster.GetPosition());
+                        Destroy(minimapObj, 5);
+                        Destroy(mapwindowObj, 5);
+
+                    }
+                }
+            }
+        }
+
         public void BearNotify()
         {
             
@@ -63,8 +83,11 @@ namespace Blis.Client.Cheat
                         {
                             GameObject minimapObj = MonoBehaviourInstance<GameUI>.inst.Minimap.UIMap.AddPing(PingType.Warning, monster.GetPosition());
                             GameObject mapwindowObj = MonoBehaviourInstance<GameUI>.inst.MapWindow.UIMap.AddPing(PingType.Warning,  monster.GetPosition());
-                        }
+                            Destroy(minimapObj, 5);
+                            Destroy(mapwindowObj, 5);
+
                     }
+                }
                 } 
         }
 
@@ -84,10 +107,28 @@ namespace Blis.Client.Cheat
                         renderer.enabled = true;
                     }
                 }
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.5f);
             } 
         }
 
+        public int i = 0;
+        void OnGUI()
+        { 
+            if (GUILayout.Button("Bear"))
+            {
+                if (Input.GetKeyUp(KeyCode.CapsLock))
+                {
+                    BearNotify();
+                }
+            }
+            if (GUILayout.Button("Wolf"))
+            {
+                if (Input.GetKeyUp(KeyCode.CapsLock))
+                {
+                    BearNotify();
+                }
+            }
+        }
         public IEnumerator CoMaphackRoutine()
         {
             //wait until..
@@ -104,12 +145,20 @@ namespace Blis.Client.Cheat
                     {
                         if (v != null)
                         {
-                            v.ShowMiniMapIcon(MiniMapIconType.None);
-                            v.ShowMapIcon(MiniMapIconType.None);
+                            if(v.IsAlive)
+                            {
+                                v.ShowMiniMapIcon(MiniMapIconType.None);
+                            }
+                            else
+                            {
+                                v.HideMiniMapIcon(MiniMapIconType.None);
+                            } 
                         }
                         yield return null;
                     }
+                    i++;
                 }
+              
                 yield return new WaitForSeconds(0.015f);
             }
         }
@@ -130,29 +179,17 @@ namespace Blis.Client.Cheat
                 }
             }
         }
+    
         void Update()
         {
             if(Input.GetKeyUp(KeyCode.CapsLock))
             {
                 BearNotify();
+                WolfNotify(); 
             }
+
             DrawCube();
-        }
-        void OnGUI()
-        {
-            GUILayout.Label(gui.ToString());
-            if (gui)
-            {
-                GUILayout.Label("----Monster----");
-                GUILayout.Label("Monster Mesh Render Count : " + monsterRenderers.Count);
-                GUILayout.Label("Monster Count : " + monsters.Count);
-                
-                if(GUILayout.Button("Update Force Monster"))
-                {
-                    monsters.ForEach(x => { x.OnSight(); });
-                }
-            }
-        }
+        } 
 
     }
 }

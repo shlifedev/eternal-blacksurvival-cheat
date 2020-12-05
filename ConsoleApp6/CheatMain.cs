@@ -43,7 +43,7 @@ namespace Blis.Client.Cheat
                 Log("Cheat Startup! ReadGameMemory");
                 Log("Wait For initalize....");
                 Log("develop by.에비츄(shlifedev)");
-                StartCoroutine(CoGameDataUpdator());
+                StartCoroutine(CoGameDataUpdator()); 
             } 
         }
          
